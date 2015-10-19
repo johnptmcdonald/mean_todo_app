@@ -1,1 +1,9 @@
-# mean_todo_app
+# Mean_todo_app
+
+Sample app for teaching purposes. 
+
+
+
+
+
+

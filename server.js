@@ -6,7 +6,6 @@ var morgan = require('morgan')
 var config = require('./config.js')
 var port = process.env.PORT || 8080
 
-
 console.log(config.development.database)
 console.log(app.settings.env)
 
@@ -17,6 +16,9 @@ app.use(morgan('dev'))
 
 var userRoutes = require('./app/routes/userRoutes.js')(app, express)
 app.use('/api', userRoutes)
+
+var sessionRoutes = require('./app/routes/sessionRoutes.js')(app, express)
+app.use('/api', sessionRoutes)
 
 app.listen(port)
 
