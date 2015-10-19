@@ -24,7 +24,7 @@ function create(req, res){
 
 	user.save(function(err){
 		if(err){
-			if(err.code == 1100){
+			if(err.code == 11000){
 				return res.json({success: false, message: "username already exists, sorry"})
 			} else {
 				return res.send(err)

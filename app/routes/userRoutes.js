@@ -1,19 +1,19 @@
 var User  = require('../models/user.js')
 var usersController = require('../controllers/usersController.js')
+var authService = require('../middlewares/authService.js')
 
 module.exports = function(app, express){
 	var userRouter = express.Router()
 
-	userRouter.get('/test', function(req, res){
-		res.json({message: "userRouter works!"})
-	})
-
-	userRouter.get('/users', usersController.index)
+	// unauthenticated route
 	userRouter.post('/users', usersController.create)
-	userRouter.get('/users/:id', usersController.show)
-	userRouter.put('/users/:id', usersController.update)
-	userRouter.patch('/users/:id', usersController.update)
-	userRouter.delete('/users/:id', usersController.destroy)
+
+	// authenticated routes
+	userRouter.get('/users', authService.isAuthenticated, usersController.index)
+	userRouter.get('/users/:id', authService.isAuthenticated, usersController.show)
+	userRouter.put('/users/:id', authService.isAuthenticated, usersController.update)
+	userRouter.patch('/users/:id', authService.isAuthenticated, usersController.update)
+	userRouter.delete('/users/:id', authService.isAuthenticated, usersController.destroy)
 
 	return userRouter
 }
