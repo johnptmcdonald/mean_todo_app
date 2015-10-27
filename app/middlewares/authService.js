@@ -27,6 +27,10 @@ function isAuthenticated(req, res, next){
 }
 
 
+function currentUser(req, res){
+	return res.send(req.decoded)
+}
+
 module.exports = {
 	isAuthenticated: isAuthenticated
 }

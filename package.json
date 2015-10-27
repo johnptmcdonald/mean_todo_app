@@ -1,19 +1,29 @@
 {
   "name": "mean_todo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample app for teaching purposes.",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "body-parser": "^1.14.1",
+    "bcrypt-nodejs": "^0.0.3",
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.1.12",
     "morgan": "^1.6.1"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnptmcdonald/mean_todo_app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnptmcdonald/mean_todo_app/issues"
+  },
+  "homepage": "https://github.com/johnptmcdonald/mean_todo_app#readme"
 }

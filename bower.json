@@ -1,0 +1,25 @@
+{
+  "name": "mean_todo",
+  "homepage": "https://github.com/johnptmcdonald/mean_todo_app",
+  "authors": [
+    "johnptmcdonald <johnptmcdonald@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "client/bower_components",
+    "client/bower_components",
+    "test",
+    "tests",
+    "bower_components"
+  ],
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.7",
+    "jquery": "~2.1.4"
+  }
+}

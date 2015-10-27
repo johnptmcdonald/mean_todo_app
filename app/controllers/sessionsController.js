@@ -18,7 +18,6 @@ function create(req, res, next){
 				res.json({success: false, message: "username and password don't match"})
 			} else {
 				var token = jwt.sign({
-					name: user.name,
 					username: user.username
 				}, secret, {
 					expiresInMinutes: 1440
@@ -34,8 +33,14 @@ function create(req, res, next){
 	})
 }
 
+function me(req, res){
+	console.log(req.decoded)
+	res.send(req.decoded)
+}
+
 module.exports = {
-	create: create
+	create: create,
+	me: me
 }
 
 

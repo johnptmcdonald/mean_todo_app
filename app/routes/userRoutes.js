@@ -6,14 +6,15 @@ module.exports = function(app, express){
 	var userRouter = express.Router()
 
 	// unauthenticated route
-	userRouter.post('/users', usersController.create)
+	userRouter.post('/', usersController.create)
 
 	// authenticated routes
-	userRouter.get('/users', authService.isAuthenticated, usersController.index)
-	userRouter.get('/users/:id', authService.isAuthenticated, usersController.show)
-	userRouter.put('/users/:id', authService.isAuthenticated, usersController.update)
-	userRouter.patch('/users/:id', authService.isAuthenticated, usersController.update)
-	userRouter.delete('/users/:id', authService.isAuthenticated, usersController.destroy)
+	// these should have authService.isAuthenticated as middleware
+	userRouter.get('/', authService.isAuthenticated, usersController.index)
+	userRouter.get('/:id', authService.isAuthenticated, usersController.show)
+	userRouter.put('/:id', authService.isAuthenticated, usersController.update)
+	userRouter.patch('/:id', authService.isAuthenticated, usersController.update)
+	userRouter.delete('/:id', authService.isAuthenticated, usersController.destroy)
 
 	return userRouter
 }
