@@ -1,9 +1,33 @@
-<div>
-hello {{authCtrl.user.username}}
 
-TODO:<br>
-server side two models
+<div ng-if="!authCtrl.loggedIn">
+
+	<p>Login to see manage your todos list</p>
+	<a ui-sref="login" class="btn btn-primary">Login</a>
+
 </div>
 
 
+<div ng-if="authCtrl.loggedIn">
 
+<table class="table table-bordered table-striped" ng-show="todosCtrl.todos">
+	<thead>
+		<tr>
+			<th>Task</th>
+			<th>Done?</th>
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="todo in todosCtrl.todos">
+			<td><span ng-class="{done: todo.done}">{{todo.body}}</span></td>
+			<td class="test"><input type="checkbox" ng-model="todo.done" ng-click="todosCtrl.update(todo._id)"></td>
+			<td class="col-sm-2">
+				<a class="btn btn-danger">Edit</a>
+				<a class="btn btn-primary">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</div>

@@ -18,6 +18,7 @@ module.exports = function(app, express){
 
 
 	userRouter.post('/:id/todos', authService.isAuthenticated, todosController.create)
+	userRouter.put('/:id/todos/:todo_id', authService.isAuthenticated, todosController.update)
 	userRouter.get('/:id/todos', authService.isAuthenticated, todosController.index)
 
 	return userRouter

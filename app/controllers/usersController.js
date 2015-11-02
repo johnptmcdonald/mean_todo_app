@@ -8,8 +8,8 @@ function index(req, res){
 }
 
 function show(req, res){
-	console.log(req.params.id)
-	User.findById(req.params.id).populate('todos').exec(function(err, user){
+	console.log(req.decoded._id)
+	User.findById(req.decoded._id).populate('todos').exec(function(err, user){
 		if(err) res.send(err)
 		res.json(user)
 	})
@@ -35,7 +35,7 @@ function create(req, res){
 }
 
 function update(req, res){
-	User.findById(req.params.id, function(err, user){
+	User.findById(req.decoded._id, function(err, user){
 		if(err){
 			res.send(err)
 		} 
@@ -53,7 +53,7 @@ function update(req, res){
 
 function destroy(req, res){
 	User.remove({
-		_id: req.params.id
+		_id: req.decoded._id
 	}, function(err, user){
 		if(err) res.send(err)
 		res.json({success: true, message: "user deleted"})
