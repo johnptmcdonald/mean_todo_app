@@ -6,7 +6,7 @@ AuthController.$inject = ['$state', '$rootScope', 'authFactory']
 
 function AuthController($state, $rootScope, authFactory){
 	var vm = this;
-	console.log('AuthController loading')
+
 	vm.test = "hello"
 	var vm = this
 	vm.user = {}
@@ -19,20 +19,23 @@ function AuthController($state, $rootScope, authFactory){
 
 	$rootScope.$on('$stateChangeStart', function() {
 		vm.loggedIn = authFactory.isLoggedIn();	
-		vm.getUser()
+
+		if(vm.loggedIn){
+			vm.getUser()	
+		}
 		vm.error = null
 	});	
 
 	function logout(){
-		$state.go('loggedOut')
+		vm.user = {}
 		authFactory.logout();
+		$state.go('loggedOut')
+		
 	}
 
 	function getUser(){
 		authFactory.getUser()
 		.then(function(response){
-			console.log("getting user")
-			console.log(response)
 			vm.user = response.data
 		})
 	}
@@ -51,7 +54,7 @@ function AuthController($state, $rootScope, authFactory){
 	function login(){
 		authFactory.login(vm.user.username, vm.user.password)
 		.then(function(response){
-			console.log(response)
+
 			if(response.data.success){
 				$state.go("home")
 			} else {

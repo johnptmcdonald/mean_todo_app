@@ -1,5 +1,6 @@
 var User  = require('../models/user.js')
 var usersController = require('../controllers/usersController.js')
+var todosController = require('../controllers/todosController.js')
 var authService = require('../middlewares/authService.js')
 
 module.exports = function(app, express){
@@ -7,7 +8,6 @@ module.exports = function(app, express){
 
 	// unauthenticated route
 	userRouter.post('/', usersController.create)
-
 	// authenticated routes
 	// these should have authService.isAuthenticated as middleware
 	userRouter.get('/', authService.isAuthenticated, usersController.index)
@@ -15,6 +15,10 @@ module.exports = function(app, express){
 	userRouter.put('/:id', authService.isAuthenticated, usersController.update)
 	userRouter.patch('/:id', authService.isAuthenticated, usersController.update)
 	userRouter.delete('/:id', authService.isAuthenticated, usersController.destroy)
+
+
+	userRouter.post('/:id/todos', authService.isAuthenticated, todosController.create)
+	userRouter.get('/:id/todos', authService.isAuthenticated, todosController.index)
 
 	return userRouter
 }

@@ -10,6 +10,12 @@ function mainRouter($stateProvider, $urlRouterProvider, $httpProvider){
 	$stateProvider
 		.state('home', {
 			url: '/home',
+			templateUrl: 'app/views/templates/home.html',
+			controller: 'TodosController as todosCtrl'
+		})
+
+		.state('loggedOut', {
+			url: '/home',
 			templateUrl: 'app/views/templates/home.html'
 		})
 

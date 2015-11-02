@@ -13,9 +13,11 @@
 	<script type="text/javascript" src="./app/services/auth/authInterceptorFactory.js"></script>
 	<script type="text/javascript" src="./app/services/auth/authTokenFactory.js"></script>
 	<script type="text/javascript" src="./app/controllers/authController.js"></script>
+	<script type="text/javascript" src="./app/controllers/todosController.js"></script>
+	<script type="text/javascript" src="./app/services/todosService.js"></script>
 	<script type="text/javascript" src="./app/app.routes.js"></script>
 </head>
-<body ng-app="mean_todo" ng-controller="AuthController as mainCtrl">
+<body ng-app="mean_todo" ng-controller="AuthController as authCtrl">
 
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -34,11 +36,19 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
-	      	<ul class="nav navbar-nav navbar-right">
+	      	<ul ng-if="!authCtrl.loggedIn" class="nav navbar-nav navbar-right">
 	        	<li><a ui-sref="login">Log in</a></li>
 	        	<li><a ui-sref="signup">Sign up</a></li>
-
 	      	</ul>
+
+	      	<ul ng-if="authCtrl.loggedIn" class="nav navbar-nav navbar-right">
+	        	<!-- <li><a ui-sref="home">My profile</a></li> -->
+	        	<li><a>signed in as <strong>{{authCtrl.user.username}}</strong></a></li>
+	        	<li><a ui-sref="home" ng-click="authCtrl.logout()">Log out</a></li>
+	      	</ul>
+
+
+
 	    </div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>

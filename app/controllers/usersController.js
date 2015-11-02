@@ -9,7 +9,7 @@ function index(req, res){
 
 function show(req, res){
 	console.log(req.params.id)
-	User.findById(req.params.id, function(err, user){
+	User.findById(req.params.id).populate('todos').exec(function(err, user){
 		if(err) res.send(err)
 		res.json(user)
 	})

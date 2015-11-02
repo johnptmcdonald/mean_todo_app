@@ -23,6 +23,7 @@ app.use('/api/users', userRoutes)
 var sessionRoutes = require('./app/routes/sessionRoutes.js')(app, express)
 app.use('/api/sessions', sessionRoutes)
 
+
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/client/index.html'));
 });

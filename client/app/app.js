@@ -1,1 +1,1 @@
-angular.module('mean_todo', ['app.routes', 'authService'])
+angular.module('mean_todo', ['app.routes', 'authService', 'todosService'])
