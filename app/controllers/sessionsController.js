@@ -7,7 +7,7 @@ function create(req, res, next){
 
 	User.findOne({
 		username: req.body.username
-	}).select('name username password').exec(function(err, user){
+	}).select('name username password todos').exec(function(err, user){
 		if(err) throw err
 
 		if(!user){
@@ -19,7 +19,8 @@ function create(req, res, next){
 			} else {
 				var token = jwt.sign({
 					username: user.username,
-					_id: user._id
+					_id: user._id,
+					todos: user.todos
 				}, secret, {
 					expiresInMinutes: 1440
 				})
